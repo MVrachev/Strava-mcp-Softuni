@@ -1,0 +1,18 @@
+services:
+  mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+      - SERVER_PORT=8000
+      - SERVER_HOST=0.0.0.0
+      - STRAVA_CLIENT_ID=${STRAVA_CLIENT_ID}
+      - STRAVA_CLIENT_SECRET=${STRAVA_CLIENT_SECRET}
+      - STRAVA_REFRESH_TOKEN=${STRAVA_REFRESH_TOKEN}
+      - STRAVA_REDIRECT_URI=http://localhost
+      - STRAVA_SCOPES=read_all,activity:read_all,profile:read_all
+    volumes:
+      - ./:/app
