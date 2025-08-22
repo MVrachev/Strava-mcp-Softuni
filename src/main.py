@@ -39,3 +39,28 @@ async def get_fresh_access_token():
 
     return data['access_token']
 
+
+mcp = FastMCP(name="strava-mcp-server")
+
+@mcp.tool(
+    name="get_activities",
+    description="Get activities from Strava",
+)
+async def get_activities(num_activities: int):
+    """
+    Get activities from Strava.
+    """
+    access_token = await get_fresh_access_token()
+    headers = {"Authorization": f"Bearer {access_token}"}
+    params = {"page": 1, "per_page": num_activities}
+    response = requests.get(ACTIVITIES_URL, headers=headers, params=params)
+    response.raise_for_status()
+    return response.json()
+
+
+if __name__ == "__main__":
+    mcp.run(
+        transport="http",
+        host=SERVER_HOST,
+        port=SERVER_PORT,
+    )
