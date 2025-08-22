@@ -37,6 +37,17 @@ docker compose up
 }
 ```
 
+## Рестарт на сървъра с Cursor
+1. Избираме Cursor -> Settings -> Cursor Settings -> Tools & Integrations -> цъкаме toggle на `strava-mcp-server` да е `OFF`
+2. В терминала Control + C или спираме от Docker Desktop контейнера.
+3. Правим промените, които искаме
+4. От терминала:
+```bash
+docker compose up
+```
+5. Избираме Cursor -> Settings -> Cursor Settings -> Tools & Integrations -> цъкаме toggle на `strava-mcp-server` да е `ON`
+
+
 # Интеграция с Clade Code
 1. Избираме Claude -> Settings -> Developer -> Edit Configs -> Отворете `claude_desktop_config.json` с editor
 2. В JSON-а, който се отвори добавяме:
@@ -55,6 +66,18 @@ docker compose up
   }
 }
 ```
+
+## Рестарт на сървъра с Claude Desktop
+1. Спираме Claude Desktop
+2. В терминала Control + C или спираме от Docker Desktop контейнера
+3. Правим промените, които искаме
+4. От терминала:
+```bash
+docker compose up
+```
+5. Стартираме Claude Desktop, ако няма грешки след стартиране, всичко точно.
+6. Цъкаме бутона отдясно на `+` бутона под чат прозореца и трябва да видим `strava-mcp-server`
+   с toggle `ON`
 
 
 # Промптове:
